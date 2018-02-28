@@ -37,6 +37,7 @@ setup(
         "pyyaml",
         "requests >= 2",
         "six",
+        "reschema",
     ],
     extras_require={
         "fido": ["fido >= 4.2.1"],

@@ -10,6 +10,7 @@ from six import iteritems
 from six import itervalues
 from six.moves import urllib
 from six.moves.urllib import parse as urlparse
+from reschema.yaml_loader import ordered_load
 
 from bravado.compat import json
 from bravado.requests_client import RequestsClient
@@ -116,7 +117,8 @@ class Loader(object):
         :return: Python dictionary representing the spec.
         :raise: yaml.parser.ParserError: If the text is not valid YAML.
         """
-        data = yaml.safe_load(text)
+        data = ordered_load(text)
+
         for methods in itervalues(data.get('paths', {})):
             for operation in itervalues(methods):
                 if 'responses' in operation:
